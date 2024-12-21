@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
@@ -14,7 +15,8 @@
             --gray-medium: #e9ecef;
         }
 
-        html, body {
+        html,
+        body {
             margin: 0;
             padding: 0;
             width: 100%;
@@ -40,7 +42,7 @@
             min-height: 85px;
             flex: 0 0 auto;
             z-index: 1000;
-            box-shadow: 0 2px 15px rgba(0,0,0,0.05);
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.05);
         }
 
         .search-input {
@@ -58,7 +60,7 @@
         .search-input:focus {
             outline: none;
             border-color: var(--pink-primary);
-            box-shadow: 0 0 10px rgba(255,105,180,0.1);
+            box-shadow: 0 0 10px rgba(255, 105, 180, 0.1);
         }
 
         .search-input::placeholder {
@@ -138,13 +140,16 @@
         }
     </style>
 </head>
+
 <body>
     <div class="container">
         <div class="search-box">
             <div class="logo-container">
                 🐰
             </div>
-            <input type="text" id="symbolInput" class="search-input" placeholder="✨ Enter crypto symbol (e.g., BTC, ETH, LINK)" autocomplete="off" autocapitalize="characters">
+            <input type="text" id="symbolInput" class="search-input"
+                placeholder="✨ Enter crypto symbol (e.g., BTC, ETH, LINK)" autocomplete="off"
+                autocapitalize="characters">
             <div class="popular-pairs">
                 <button class="pair-button" onclick="loadChart('BTCUSD')">BTC/USD</button>
                 <button class="pair-button" onclick="loadChart('ETHUSD')">ETH/USD</button>
@@ -167,7 +172,7 @@
             }
 
             const container = document.getElementById('tradingview_widget_container');
-            
+
             widget = new TradingView.widget({
                 "container_id": "tradingview_widget_container",
                 "autosize": true,
@@ -204,28 +209,29 @@
             createWidget(symbol);
         }
 
-        document.getElementById('symbolInput').addEventListener('keypress', function(event) {
+        document.getElementById('symbolInput').addEventListener('keypress', function (event) {
             if (event.key === "Enter") {
                 const symbol = this.value.toUpperCase() + "USD";
                 loadChart(symbol);
             }
         });
 
-        window.addEventListener('resize', function() {
+        window.addEventListener('resize', function () {
             if (widget) {
                 widget.resize();
             }
         });
 
-        window.onload = function() {
+        window.onload = function () {
             setTimeout(() => {
                 loadChart('BTCUSD');
             }, 100);
-            
-            document.body.addEventListener('touchmove', function(e) {
+
+            document.body.addEventListener('touchmove', function (e) {
                 e.preventDefault();
             }, { passive: false });
         };
     </script>
 </body>
-</html> 
+
+</html>
